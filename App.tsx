@@ -23,7 +23,10 @@ const App = () => {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-  
+          options={ {
+            headerShown: true,
+            title: 'Nuevo usuario'
+        } }
         />
 
         {/* PANTALLA DE REGISTRO  */}
