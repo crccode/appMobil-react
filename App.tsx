@@ -33,6 +33,7 @@ const App = () => {
         <Stack.Screen 
             name="RegisterScreen" 
             component={RegisterScreen} 
+            
         />
 
       </Stack.Navigator>

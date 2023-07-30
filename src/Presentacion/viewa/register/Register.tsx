@@ -3,8 +3,12 @@ import { Image, StyleSheet, TextInput, ToastAndroid } from 'react-native';
 import { View, Text } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 
+import useViewModel from './ViewModel';
+import CustomTextInput from '../../components/CustomTextInput';
 
+import styles from './Style'
 export const RegisterScreen = () => {
+    const {name, lastname,phone,email,password,confirmPassword,onChange,register} = useViewModel();
     return (
         <View style={styles.container}>
             {/* // IMAGEN DE FONDO */}
@@ -26,84 +30,62 @@ export const RegisterScreen = () => {
             <View style={styles.form}>
                 <Text style={styles.formText} >REGISTRARSE</Text>
 
-        
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/user.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='Nombres'
-                        keyboardType='default'
-                    />
-                </View>
-
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/my_user.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='Apellidos'
-                        keyboardType='default'
-                    />
-                </View>
-
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/email.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='correo electronico'
-                        keyboardType='email-address'
-                    />
-                </View>
-                
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/phone.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='Telefono'
-                        keyboardType='numeric'
-                    />
-                </View>
-
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/password.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='contraseña'
-                        keyboardType='default'
-                        secureTextEntry={true}
-                    />
-                </View>
-
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/confirm_password.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='Confirmar contraseña'
-                        keyboardType='default'
-                        secureTextEntry={true}
-                    />
-                </View>
+                <CustomTextInput
+                    image={require('../../../../assets/user.png')}
+                    placeholder='Nombres'
+                    keyboardType = 'default'
+                    property= 'name'
+                    onchangeText={onChange}
+                    value={name}
+                />
+                <CustomTextInput
+                    image={require('../../../../assets/my_user.png')}
+                    placeholder='Apellidos'
+                    keyboardType = 'default'
+                    property= 'lastname'
+                    onchangeText={onChange}
+                    value={lastname}
+                />
+                <CustomTextInput
+                    image={require('../../../../assets/email.png')}
+                    placeholder='correo electronico'
+                    keyboardType = 'email-address'
+                    property= 'email'
+                    onchangeText={onChange}
+                    value={email}
+                />
+                <CustomTextInput
+                    image={require('../../../../assets/phone.png')}
+                    placeholder='Telefono'
+                    keyboardType = 'numeric'
+                    property= 'phone'
+                    onchangeText={onChange}
+                    value={phone}
+                />
+                <CustomTextInput
+                    image={require('../../../../assets/password.png')}
+                    placeholder='contraseña'
+                    keyboardType = 'default'
+                    secureTextEntry={true}
+                    property= 'password'
+                    onchangeText={onChange}
+                    value={password}
+                />
+                <CustomTextInput
+                    image={require('../../../../assets/confirm_password.png')}
+                    placeholder='Confirmar contraseña'
+                    keyboardType = 'default'
+                    secureTextEntry={true}
+                    property= 'confirmPassword'
+                    onchangeText={onChange}
+                    value={confirmPassword}
+                />
 
                 <View style={{ marginTop: 30 }}>
                     <RoundedButton text='CONFIRMAR'
-                        onPress={() => { ToastAndroid.show('CLICK here', ToastAndroid.SHORT) }} />
+                        onPress={() => { 
+                            register()
+                        }} />
                 </View>
 
 
@@ -111,91 +93,6 @@ export const RegisterScreen = () => {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-container: {
-    // EXPANDE TODOS LOS ELEMENTOS 
-    flex: 1,
-    backgroundColor: 'black',
-
-},
-
-imageBackground: {
-    width: '100%',
-    height: '100%',
-    bottom: '30%',
-    opacity: 0.6
-},
-
-// ESTILOS PARA EL FORMULARIO
-form: {
-    width: '100%',
-    height: '70%',
-    backgroundColor: 'white',
-    position: 'absolute',
-    bottom: 0,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    // APLICA EL PADING A TODOS LOS ELEMENTOS QUE ESTAN DENTRO
-    padding: 20
-},
-formText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-},
-formInput: {
-    flexDirection: 'row',
-    marginTop: 30
-},
-formIcon: {
-    width: 25,
-    height: 25,
-    marginTop: 5
-},
-formTextInput: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: 'yellow',
-    marginLeft: 15
-},
-
-// ESTILOS PARA EL LOGO
-logoContainer: {
-    position: 'absolute',
-    alignSelf: 'center',
-    top: '5%',
-    alignItems: 'center'
-},
-
-logoImage: {
-    width: 100,
-    height: 100,
-},
-
-logoText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 20,
-    marginTop: 10,
-    fontWeight: 'bold',
-},
-// FORMULARIO REGISTRO
-formRegister: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 30,
-},
-formRegisterText: {
-    fontStyle: 'italic',
-    color: 'orange',
-    borderBottomWidth: 1,
-    borderBottomColor: 'orange',
-    fontWeight: 'bold',
-    marginLeft: 15,
-},
-
-
-});
 
 
 
