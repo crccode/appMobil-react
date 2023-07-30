@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { HomeScreen } from './src/components/viewa/home/Home';
-import { RegisterScreen } from './src/components/viewa/register/Register';
+import { HomeScreen } from './src/Presentacion/viewa/home/Home';
+import { RegisterScreen } from './src/Presentacion/viewa/register/Register';
 
 // DEBEMOS DEFINIR QUE TIPOS DE DATOS VA A RECIBIR LAS PANTALLAS 
 export type RootStackParamList = {

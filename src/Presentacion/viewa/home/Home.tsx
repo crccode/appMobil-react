@@ -1,11 +1,16 @@
 import React from 'react'
 import {useNavigation} from '@react-navigation/native'
 import { Image, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { RoundedButton } from '../../RoundedButton';
+import { RoundedButton } from '../../components/RoundedButton';
 import { ToastAndroid } from 'react-native';
 import { StackNavigationProp} from '@react-navigation/stack'
 import { RootStackParamList } from '../../../../App';
+import { useState } from 'react';
+import useViewModel from './ViewModel'
 export const HomeScreen = () => {
+    // DES ESTRUCTURAMOS LOS VALORES
+   const {email, password, onChange}= useViewModel();
+
     // USAREMOS EL HOOKS DE NAVIGATION
     const navigation = useNavigation <StackNavigationProp<RootStackParamList>>();
     return (
@@ -37,6 +42,8 @@ export const HomeScreen = () => {
                         style={styles.formTextInput}
                         placeholder='correo electronico'
                         keyboardType='email-address'
+                        value={email}
+                        onChangeText={text => onChange('email', text)}
                     />
                 </View>
 
@@ -50,12 +57,16 @@ export const HomeScreen = () => {
                         placeholder='contraseña'
                         keyboardType='default'
                         secureTextEntry={true}
+                        value={password}
+                        onChangeText={text => onChange('password', text)}
                     />
                 </View>
 
                 <View style={{ marginTop: 30 }}>
                     <RoundedButton text='ENTRAR'
-                        onPress={() => { ToastAndroid.show('CLICK here', ToastAndroid.SHORT) }} />
+                        onPress={() => { 
+                            ToastAndroid.show('CLICK here', ToastAndroid.SHORT) 
+                        }} />
                 </View>
 
                 <View style={styles.formRegister}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, TextInput, ToastAndroid } from 'react-native';
 import { View, Text } from 'react-native';
-import { RoundedButton } from '../../RoundedButton';
+import { RoundedButton } from '../../components/RoundedButton';
 
 
 export const RegisterScreen = () => {
