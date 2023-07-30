@@ -7,6 +7,7 @@ import { StackNavigationProp} from '@react-navigation/stack'
 import { RootStackParamList } from '../../../../App';
 import { useState } from 'react';
 import useViewModel from './ViewModel'
+import CustomTextInput from '../../components/CustomTextInput';
 export const HomeScreen = () => {
     // DES ESTRUCTURAMOS LOS VALORES
    const {email, password, onChange}= useViewModel();
@@ -33,34 +34,26 @@ export const HomeScreen = () => {
             {/* // FORMULARIO  */}
             <View style={styles.form}>
                 <Text style={styles.formText} >INGRESAR</Text>
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/email.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='correo electronico'
-                        keyboardType='email-address'
-                        value={email}
-                        onChangeText={text => onChange('email', text)}
-                    />
-                </View>
+                {/* COMPONENTES PERSONALIZADOS  */}
+                <CustomTextInput
+                    image= {require('../../../../assets/email.png')}
+                    placeholder='correo electronico'
+                    keyboardType='email-address'
+                    property='email'
+                    onchangeText={ onChange}
+                    value={email}
+                />
 
-                <View style={styles.formInput}>
-                    <Image
-                        source={require('../../../../assets/password.png')}
-                        style={styles.formIcon}
-                    />
-                    <TextInput
-                        style={styles.formTextInput}
-                        placeholder='contraseña'
-                        keyboardType='default'
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={text => onChange('password', text)}
-                    />
-                </View>
+                <CustomTextInput
+                    image= {require('../../../../assets/password.png')}
+                    placeholder='contraseña'
+                    keyboardType='default'
+                    property='password'
+                    onchangeText={ onChange}
+                    value={password}
+                    secureTextEntry={true}
+                />
+              
 
                 <View style={{ marginTop: 30 }}>
                     <RoundedButton text='ENTRAR'
