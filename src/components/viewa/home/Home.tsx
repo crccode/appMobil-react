@@ -1,9 +1,13 @@
 import React from 'react'
-import { Image, View, Text, TextInput, StyleSheet } from 'react-native';
+import {useNavigation} from '@react-navigation/native'
+import { Image, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { RoundedButton } from '../../RoundedButton';
 import { ToastAndroid } from 'react-native';
-
+import { StackNavigationProp} from '@react-navigation/stack'
+import { RootStackParamList } from '../../../../App';
 export const HomeScreen = () => {
+    // USAREMOS EL HOOKS DE NAVIGATION
+    const navigation = useNavigation <StackNavigationProp<RootStackParamList>>();
     return (
         <View style={styles.container}>
             {/* // IMAGEN DE FONDO */}
@@ -55,8 +59,12 @@ export const HomeScreen = () => {
                 </View>
 
                 <View style={styles.formRegister}>
+                    {/* PARA USAR EL ONCLINK DEBEMOS USAR TOUCHOPACITY  */}
                     <Text>No tienes cuenta</Text>
-                    <Text style={styles.formRegisterText}>Registrate</Text>
+                    <TouchableOpacity onPress={ () => navigation.navigate('RegisterScreen')}>
+                        <Text style={styles.formRegisterText}>Registrate</Text>
+                    </TouchableOpacity>
+                    
                 </View>
 
             </View>

@@ -2,8 +2,15 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { HomeScreen } from './src/components/viewa/home/Home';
+import { RegisterScreen } from './src/components/viewa/register/Register';
 
-const Stack = createNativeStackNavigator();
+// DEBEMOS DEFINIR QUE TIPOS DE DATOS VA A RECIBIR LAS PANTALLAS 
+export type RootStackParamList = {
+    // undifined lo usamos cuando no pasamos datos entre pantallas 
+    HomeScreen: undefined,
+    RegisterScreen: undefined,
+}
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
@@ -18,7 +25,13 @@ const App = () => {
           component={HomeScreen}
   
         />
-        {/* <Stack.Screen name="Profile" component={ProfileScreen} />  */}
+
+        {/* PANTALLA DE REGISTRO  */}
+        <Stack.Screen 
+            name="RegisterScreen" 
+            component={RegisterScreen} 
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
