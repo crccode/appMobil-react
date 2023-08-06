@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
+import { ApiDelivery } from '../../../Data/sources/remote/api/ApiDelivery';
+import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth';
+
 const RegisterViewModel = () => {
     const [values, setValues] = useState({
         name: '',
@@ -16,8 +19,9 @@ const RegisterViewModel = () => {
     }
 
     // CLICK BOTON
-    const register = () => {
-        console.log(JSON.stringify(values));
+    const register = async () => {
+        // console.log(JSON.stringify(values));
+        const { error } = await RegisterAuthUseCase(values as any);
         
     }
     // RETORNAMOS UN OBJETO
