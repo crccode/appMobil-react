@@ -15,7 +15,7 @@ export class AuthRepositoryImpl implements AuthRepository {
 
         } catch (error) {
             let e = (error as AxiosError);
-            console.log('ERROR: ' + JSON.stringify(e.response?.data));
+            console.log('ERROR: ' + JSON.stringify(e.response?.data)); // Error que viene del server
             const apiError:ResponseApiDelivery = JSON.parse(JSON.stringify(e.response?.data)); 
             return Promise.resolve(apiError)
         }
